@@ -5,13 +5,24 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
+interface LavalinkNodeInfo {
+  id: string;
+  connected: boolean;
+  players?: number;
+  playingPlayers?: number;
+  ping?: number;
+}
+
 interface SystemStats {
   guilds: number | null;
   listeners: number | null;
   activePlayers: number | null;
   clusters: number | null;
   uptimeSeconds: number | null;
-  lavalinkNodes: { id: string; connected: boolean }[];
+  uptimeFormatted?: string | null;
+  ping?: number | null;
+  totalSongsPlayed?: number | null;
+  lavalinkNodes: LavalinkNodeInfo[];
   isOperational: boolean;
   lastUpdated: string;
 }
@@ -140,7 +151,7 @@ export default function StatusPage() {
             <div className="bg-[#181026] border-[3px] border-[#000000] shadow-[6px_6px_0px_#000000] rounded-2xl p-5">
               <div className="text-[11px] font-bold text-[#A692C6] uppercase">System uptime</div>
               <div className="text-2xl font-black text-white font-[family-name:var(--font-fredoka)] mt-1 truncate">
-                {formatUptime(stats?.uptimeSeconds ?? null)}
+                {stats?.uptimeFormatted || formatUptime(stats?.uptimeSeconds ?? null)}
               </div>
               <div className="text-[11px] text-[#A692C6] mt-1 font-mono">Process running</div>
             </div>
@@ -163,9 +174,15 @@ export default function StatusPage() {
                       key={node.id}
                       className="p-3 bg-[#120B1E] border border-[#000000] rounded-xl flex items-center justify-between text-xs font-mono"
                     >
-                      <span className="font-bold text-white">{node.id}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] border border-[#000000] inline-block shrink-0" />
+                        <span className="font-bold text-white">{node.id}</span>
+                        {node.players !== undefined && (
+                          <span className="text-[#A692C6] text-[11px]">({node.players} players)</span>
+                        )}
+                      </div>
                       <span className="px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981] font-bold">
-                        Connected (0% loss)
+                        Connected
                       </span>
                     </div>
                   ))
