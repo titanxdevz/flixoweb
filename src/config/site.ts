@@ -1,0 +1,47 @@
+export const siteConfig = {
+  name: "Flixo",
+  shortDescription: "Discord music bot with lossless audio and live DSP filters.",
+  description:
+    "Flixo streams 384kbps lossless audio to your Discord server using Lavalink v4. Features 14 live DSP filters, Spotify and Last.fm sync, and 24/7 playback.",
+  url: "https://flixo.fun",
+  discordInviteUrl: "https://discord.com/oauth2/authorize?client_id=1380994881731952741&permissions=8&scope=bot%20applications.commands",
+  discordSupportUrl: "https://discord.gg/uhXSf4qCm",
+  topGgVoteUrl: "https://top.gg/bot/1380994881731952741/vote",
+  githubUrl: "https://github.com/AnshSingh/flixo",
+  contactEmail: "anshthedev59@gmail.com",
+  legalEntity: "Ansh Singh",
+  country: "India",
+  address: "Gorakhpur, Uttar Pradesh 273004, India",
+  navLinks: [
+    { label: "Audio demo", href: "/#demo" },
+    { label: "Filters", href: "/filters" },
+    { label: "Commands", href: "/commands" },
+    { label: "Status", href: "/status" },
+    { label: "FAQ", href: "/#faq" },
+  ],
+  footerLinks: {
+    product: [
+      { label: "Overview", href: "/#features" },
+      { label: "Audio demo", href: "/#demo" },
+      { label: "DSP filters", href: "/filters" },
+      { label: "Command list", href: "/commands" },
+      { label: "System status", href: "/status" },
+      { label: "Audio sources", href: "/sources" },
+      { label: "Permission roles", href: "/roles" },
+      { label: "Premium tiers", href: "/premium" },
+    ],
+    community: [
+      { label: "Discord support server", href: "https://discord.gg/uhXSf4qCm", external: true },
+      { label: "Invite Flixo", href: "https://discord.com/oauth2/authorize?client_id=1380994881731952741&permissions=8&scope=bot%20applications.commands", external: true },
+      { label: "Vote on Top.gg", href: "https://top.gg/bot/1380994881731952741/vote", external: true },
+    ],
+    legal: [
+      { label: "Terms of service", href: "/terms" },
+      { label: "Privacy policy", href: "/privacy" },
+      { label: "Cookie policy", href: "/cookies" },
+      { label: "Acceptable use", href: "/acceptable-use" },
+      { label: "Refund policy", href: "/refund" },
+      { label: "DMCA & copyright", href: "/dmca" },
+    ],
+  },
+};
