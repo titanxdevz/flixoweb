@@ -138,7 +138,7 @@ export default function Footer() {
         {/* Bottom copyright line */}
         <div className="pt-8 border-t-[2px] border-[#221636] flex flex-col sm:flex-row items-center justify-between text-xs text-[#A692C6] font-medium gap-3">
           <p>© {currentYear} Flixo Music. Not affiliated with Discord Inc. or Spotify AB.</p>
-          <p>Audio decoded via clustered Lavalink v4 nodes.</p>
+          <p>Studio-grade 384kbps lossless audio streaming for Discord.</p>
         </div>
       </div>
     </footer>

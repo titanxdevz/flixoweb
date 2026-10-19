@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Flixo",
   shortDescription: "Discord music bot with lossless audio and live DSP filters.",
   description:
-    "Flixo streams 384kbps lossless audio to your Discord server using Lavalink v4. Features 14 live DSP filters, Spotify and Last.fm sync, and 24/7 playback.",
+    "Flixo streams 384kbps lossless audio to your Discord server with 14 live DSP filters, Spotify and Last.fm sync, and 24/7 playback.",
   url: "https://flixo.fun",
   discordInviteUrl: "https://discord.com/oauth2/authorize?client_id=1380994881731952741&permissions=8&scope=bot%20applications.commands",
   discordSupportUrl: "https://discord.gg/uhXSf4qCm",

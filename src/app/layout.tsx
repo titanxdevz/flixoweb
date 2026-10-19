@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import PageLoader from "@/components/PageLoader";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -27,6 +28,7 @@ export default function RootLayout({
       className="dark"
     >
       <body className="bg-[#0E0919] text-[#FFFFFF] min-h-screen selection:bg-[#FF5CAA] selection:text-white">
+        <PageLoader />
         {children}
       </body>
     </html>

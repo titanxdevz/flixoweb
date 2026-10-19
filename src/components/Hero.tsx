@@ -58,8 +58,8 @@ export default function Hero() {
           {/* Left Column: Huge Headline & Actions */}
           <div className="lg:col-span-7 z-20">
             {/* Small tag badge */}
-            <div className="inline-block px-3 py-1 bg-[#221636] border-[2.5px] border-[#000000] rounded-lg shadow-[3px_3px_0px_#000000] text-xs font-bold text-[#FF5CAA] mb-5 rotate-[-1deg]">
-              Lavalink v4 • Lossless 384kbps
+            <div className="inline-block px-3.5 py-1 bg-[#221636] border-[2.5px] border-[#000000] rounded-lg shadow-[3px_3px_0px_#000000] text-xs font-bold text-[#FF5CAA] mb-5 rotate-[-1deg]">
+              Studio Sound • Lossless 384kbps
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-extrabold text-white leading-[1.05] tracking-tight font-[family-name:var(--font-fredoka)]">
