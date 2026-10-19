@@ -68,6 +68,13 @@ export default function Hero() {
               </a>
 
               <Link
+                href="/dashboard"
+                className="brutal-btn px-6 py-4 bg-[#FFB020] text-black rounded-2xl text-base font-extrabold hover:bg-[#F59E0B] flex items-center gap-2"
+              >
+                Launch Web Player
+              </Link>
+
+              <Link
                 href="/filters"
                 className="brutal-btn px-6 py-4 bg-[#1E1332] text-white rounded-2xl text-base font-extrabold hover:bg-[#2A1B44]"
               >

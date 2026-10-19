@@ -13,6 +13,7 @@ export const siteConfig = {
   country: "India",
   address: "Gorakhpur, Uttar Pradesh 273004, India",
   navLinks: [
+    { label: "Dashboard", href: "/dashboard" },
     { label: "Filters", href: "/filters" },
     { label: "Commands", href: "/commands" },
     { label: "Status", href: "/status" },
@@ -20,6 +21,7 @@ export const siteConfig = {
   ],
   footerLinks: {
     product: [
+      { label: "Web player console", href: "/dashboard" },
       { label: "Overview", href: "/#features" },
       { label: "DSP filters", href: "/filters" },
       { label: "Command list", href: "/commands" },

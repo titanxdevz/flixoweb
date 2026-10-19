@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
+import { Headphones } from "lucide-react";
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,19 +51,18 @@ export default function Navbar() {
 
         {/* Chunky Action Buttons */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href={siteConfig.discordSupportUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brutal-btn px-4 py-2 bg-[#1E1332] text-white rounded-xl text-xs font-bold hover:bg-[#281A42]"
+          <Link
+            href="/dashboard"
+            className="brutal-btn px-4 py-2 bg-[#FFB020] text-black rounded-xl text-xs font-mono font-bold hover:bg-[#F59E0B] flex items-center gap-1.5"
           >
-            Support server
-          </a>
+            <Headphones className="w-3.5 h-3.5" />
+            <span>Web Player</span>
+          </Link>
           <a
             href={siteConfig.discordInviteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="brutal-btn px-5 py-2.5 bg-[#7C3AED] text-white rounded-xl text-xs font-bold hover:bg-[#6D28D9]"
+            className="brutal-btn px-4 py-2 bg-[#7C3AED] text-white rounded-xl text-xs font-bold hover:bg-[#6D28D9]"
           >
             Add to Discord
           </a>
@@ -109,6 +110,14 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-2 border-t-[2px] border-[#000000] flex flex-col gap-2">
+            <Link
+              href="/dashboard"
+              onClick={() => setMenuOpen(false)}
+              className="brutal-btn py-2.5 bg-[#FFB020] text-black rounded-xl text-xs font-mono font-bold text-center flex items-center justify-center gap-2"
+            >
+              <Headphones className="w-3.5 h-3.5" />
+              <span>Launch Web Player</span>
+            </Link>
             <a
               href={siteConfig.discordInviteUrl}
               target="_blank"
