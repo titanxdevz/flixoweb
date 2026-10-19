@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import {
@@ -10,11 +9,8 @@ import {
   Radio,
   Plus,
   ArrowRight,
-  Sparkles,
   ExternalLink,
   ShieldCheck,
-  CheckCircle2,
-  Clock,
 } from "lucide-react";
 
 interface LiveStats {
