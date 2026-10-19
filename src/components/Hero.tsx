@@ -71,7 +71,10 @@ export default function Hero() {
                 href="/dashboard"
                 className="brutal-btn px-6 py-4 bg-[#FFB020] text-black rounded-2xl text-base font-extrabold hover:bg-[#F59E0B] flex items-center gap-2"
               >
-                Launch Web Player
+                <span>Web Player</span>
+                <span className="px-1.5 py-0.5 bg-black text-[#FFB020] text-[10px] rounded uppercase font-mono font-bold">
+                  Soon
+                </span>
               </Link>
 
               <Link
