@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useFilter } from "@/context/FilterContext";
 import { siteConfig } from "@/config/site";
 import { CatPawSticker, HeadphonesSticker, MusicNoteSticker, StarSticker } from "./StickerIcons";
@@ -15,7 +16,7 @@ interface BotStats {
 
 export default function Hero() {
   const [stats, setStats] = useState<BotStats | null>(null);
-  const { activeFilter, isPlaying, mascotHop, triggerMascotHop } = useFilter();
+  const { mascotHop, triggerMascotHop } = useFilter();
 
   useEffect(() => {
     fetch("/api/stats")
@@ -32,21 +33,6 @@ export default function Hero() {
   const getMascotMotionClass = () => {
     if (mascotHop) {
       return "translate-y-[-24px] scale-105 rotate-3 transition-transform duration-200";
-    }
-    if (!isPlaying) {
-      return "animate-breathe";
-    }
-    if (activeFilter === "8d") {
-      return "animate-sway-8d";
-    }
-    if (activeFilter === "bassboost") {
-      return "animate-bass-bounce";
-    }
-    if (activeFilter === "nightcore") {
-      return "animate-sway-8d [animation-duration:0.8s]";
-    }
-    if (activeFilter === "vaporwave") {
-      return "animate-breathe [animation-duration:5s] scale-[0.98]";
     }
     return "animate-breathe";
   };
@@ -81,12 +67,12 @@ export default function Hero() {
                 Add to Discord
               </a>
 
-              <a
-                href="#demo"
+              <Link
+                href="/filters"
                 className="brutal-btn px-6 py-4 bg-[#1E1332] text-white rounded-2xl text-base font-extrabold hover:bg-[#2A1B44]"
               >
-                Test the filters
-              </a>
+                Explore DSP filters
+              </Link>
             </div>
 
             {/* Real Stats Row with "–" fallback */}
@@ -143,12 +129,8 @@ export default function Hero() {
               </div>
 
               {/* Speech bubble sticker */}
-              <div className="absolute -top-12 right-0 z-40 bg-[#1E1332] border-[2.5px] border-[#000000] shadow-[3px_3px_0px_#000000] rounded-2xl px-3 py-1.5 text-xs font-bold text-white rotate-[3deg] select-none pointer-events-none">
-                {activeFilter === "8d" && "Swaying in 8D!"}
-                {activeFilter === "bassboost" && "Bounce! +14dB Bass!"}
-                {activeFilter === "nightcore" && "Speeding up ⚡"}
-                {activeFilter === "vaporwave" && "Chill cassette vibes"}
-                {activeFilter === "flat" && "Click me to hop!"}
+              <div className="absolute -top-12 right-0 z-40 bg-[#1E1332] border-[2.5px] border-[#000000] shadow-[3px_3px_0px_#000000] rounded-2xl px-3.5 py-1.5 text-xs font-bold text-white rotate-[3deg] select-none pointer-events-none">
+                Click me to hop!
               </div>
 
               {/* Big Mascot with Sticker White Border and Ink Outline */}

@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import AudioPlayerDemo from "@/components/AudioPlayerDemo";
 import FeaturesCollage from "@/components/FeaturesCollage";
 import CommandTeaser from "@/components/CommandTeaser";
 import ComparisonTable from "@/components/ComparisonTable";
@@ -22,7 +21,6 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
-          <AudioPlayerDemo />
           <FeaturesCollage />
           <CommandTeaser />
           <ComparisonTable />
