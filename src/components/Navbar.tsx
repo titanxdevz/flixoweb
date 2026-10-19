@@ -1,14 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-
-import { Headphones } from "lucide-react";
+import { api } from "@/lib/dashboard-api";
+import { Headphones, LogIn } from "lucide-react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{ username: string; avatar: string | null } | null>(null);
+
+  useEffect(() => {
+    api.getCurrentUser()
+      .then((user) => {
+        if (user && user.id) {
+          setCurrentUser({ username: user.username, avatar: user.avatar });
+        }
+      })
+      .catch(() => {
+        setCurrentUser(null);
+      });
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-[#0E0919]/95 border-b-[3px] border-[#000000] backdrop-blur-md">
@@ -51,6 +64,38 @@ export default function Navbar() {
 
         {/* Chunky Action Buttons */}
         <div className="hidden sm:flex items-center gap-3">
+          {currentUser ? (
+            <Link
+              href="/dashboard"
+              className="brutal-btn px-3 py-1.5 bg-[#1B1526] hover:bg-[#251D33] text-white rounded-xl text-xs font-mono font-bold flex items-center gap-2"
+              title="Open your audio dashboard"
+            >
+              <div className="w-6 h-6 rounded-lg overflow-hidden border border-black relative shrink-0 bg-black">
+                {currentUser.avatar ? (
+                  <Image
+                    src={currentUser.avatar}
+                    alt={currentUser.username}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-[10px] bg-[#3B1E54] text-white">
+                    {currentUser.username.slice(0, 2).toUpperCase()}
+                  </div>
+                )}
+              </div>
+              <span className="truncate max-w-[110px]">{currentUser.username}</span>
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="brutal-btn px-3.5 py-2 bg-[#20182C] hover:bg-[#2C213D] text-[#DDD4EC] hover:text-white rounded-xl text-xs font-mono font-bold flex items-center gap-1.5"
+            >
+              <LogIn className="w-3.5 h-3.5" />
+              <span>Sign In</span>
+            </Link>
+          )}
+
           <Link
             href="/dashboard"
             className="brutal-btn px-4 py-2 bg-[#FFB020] text-black rounded-xl text-xs font-mono font-bold hover:bg-[#F59E0B] flex items-center gap-1.5"
@@ -110,6 +155,24 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-2 border-t-[2px] border-[#000000] flex flex-col gap-2">
+            {currentUser ? (
+              <Link
+                href="/dashboard"
+                onClick={() => setMenuOpen(false)}
+                className="brutal-btn py-2.5 bg-[#1F172C] text-white rounded-xl text-xs font-mono font-bold text-center flex items-center justify-center gap-2"
+              >
+                <span>Logged in as {currentUser.username}</span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMenuOpen(false)}
+                className="brutal-btn py-2.5 bg-[#20182C] text-[#DDD4EC] rounded-xl text-xs font-mono font-bold text-center flex items-center justify-center gap-2"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Sign In with Discord</span>
+              </Link>
+            )}
             <Link
               href="/dashboard"
               onClick={() => setMenuOpen(false)}
@@ -125,14 +188,6 @@ export default function Navbar() {
               className="brutal-btn py-2.5 bg-[#7C3AED] text-white rounded-xl text-xs font-bold text-center"
             >
               Add to Discord
-            </a>
-            <a
-              href={siteConfig.discordSupportUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="brutal-btn py-2 bg-[#1E1332] text-white rounded-xl text-xs font-bold text-center"
-            >
-              Support server
             </a>
           </div>
         </nav>

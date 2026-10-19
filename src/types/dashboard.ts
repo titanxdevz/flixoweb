@@ -129,8 +129,10 @@ export interface MutualGuild {
   name: string;
   icon: string | null;
   owner: boolean;
-  permissions: string;
-  isBotIn: boolean;
+  permissions?: string;
+  hasBot?: boolean;
+  isBotIn?: boolean;
+  memberCount?: number | null;
   activeVoiceChannel?: string | null;
   listeners?: number;
   isPlaying?: boolean;

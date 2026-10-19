@@ -12,11 +12,8 @@ import {
   AdminLog,
 } from "@/types/dashboard";
 
-const DEFAULT_API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  (typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? "http://localhost:6776"
-    : "http://flixo.vexanode.gg:6776");
+export const BOT_REMOTE_URL = "http://flixo.vexanode.gg:6776";
+const DEFAULT_API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 class DashboardApiClient {
   private csrfToken: string | null = null;
@@ -30,8 +27,13 @@ class DashboardApiClient {
     return this.csrfToken;
   }
 
+  public getDiscordOAuthUrl(): string {
+    if (this.baseUrl) return `${this.baseUrl}/auth/discord`;
+    return `${BOT_REMOTE_URL}/auth/discord`;
+  }
+
   private async request<T>(path: string, options: RequestInit = {}): Promise<T> {
-    const url = `${this.baseUrl}${path}`;
+    const primaryUrl = `${this.baseUrl}${path}`;
     const headers = new Headers(options.headers || {});
 
     // Include CSRF token for mutating methods
@@ -45,8 +47,8 @@ class DashboardApiClient {
       }
     }
 
-    try {
-      const response = await fetch(url, {
+    const executeFetch = async (targetUrl: string) => {
+      const response = await fetch(targetUrl, {
         ...options,
         headers,
         credentials: "include", // transport rule from api.md §1
@@ -64,9 +66,20 @@ class DashboardApiClient {
       }
 
       return (await response.json()) as T;
+    };
+
+    try {
+      return await executeFetch(primaryUrl);
     } catch (err: unknown) {
+      // If relative URL failed and we're in the browser, attempt direct remote bot fallback
+      if (!this.baseUrl && typeof window !== "undefined") {
+        try {
+          return await executeFetch(`${BOT_REMOTE_URL}${path}`);
+        } catch {
+          // Re-throw initial error
+        }
+      }
       const msg = err instanceof Error ? err.message : String(err);
-      throw new Error(msg);
     }
   }
 
